@@ -12,6 +12,10 @@ const config: (t: ContextApi['t']) => ConfigMenuItemsType[] = (t) => [
     showItemsOnMobile: false,
     items: [
       {
+        label: t('Social'),
+        href: '/follow',
+      },
+      {
         label: t('Exchange'),
         href: '/swap',
       },

@@ -1,5 +1,5 @@
 import React, { lazy } from 'react'
-import { Router, Redirect, Route, Switch } from 'react-router-dom'
+import { HashRouter, Redirect, Route, Switch } from 'react-router-dom'
 import { ResetCSS } from '@pancakeswap/uikit'
 import { useWeb3React } from '@web3-react/core'
 import BigNumber from 'bignumber.js'
@@ -18,8 +18,8 @@ import { ToastListener } from './contexts/ToastsContext'
 import PageLoader from './components/Loader/PageLoader'
 import EasterEgg from './components/EasterEgg'
 import GlobalCheckClaimStatus from './components/GlobalCheckClaimStatus'
-import history from './routerHistory'
 // Views included in the main bundle
+import Follow from './views/Follow'
 import Pools from './views/Pools'
 import Swap from './views/Swap'
 import {
@@ -73,10 +73,10 @@ const App: React.FC = () => {
   useScrollOnRouteChange()
   useUserAgent()
   useInactiveListener()
-  useSentryUser()
+  // useSentryUser()
 
   return (
-    <Router history={history}>
+    <HashRouter>
       <ResetCSS />
       <GlobalStyle />
       <GlobalCheckClaimStatus excludeLocations={[]} />
@@ -94,6 +94,9 @@ const App: React.FC = () => {
             </Route>
             <Route path="/pools">
               <Pools />
+            </Route>
+            <Route path="/follow">
+              <Follow />
             </Route>
             <Route path="/lottery">
               <Lottery />
@@ -184,7 +187,7 @@ const App: React.FC = () => {
       <EasterEgg iterations={2} />
       <ToastListener />
       <SubgraphHealthIndicator />
-    </Router>
+    </HashRouter>
   )
 }
 
